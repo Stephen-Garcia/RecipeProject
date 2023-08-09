@@ -3,9 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Recipe Finder</title>
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    
+    <header>
+        <h1>Recipe Finder</h1>
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search for recipes...">
+            <button onclick="searchRecipes()">Search</button>
+        </div>
+    </header>
+
+    <main>
+        <div id="recipeList">
+        </div>
+    </main>
+
+    <script src="assets/js/sceipt.js"></script>
 </body>
 </html>
