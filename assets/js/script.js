@@ -7,7 +7,7 @@
 // Acceptance Criteria:
 // When searching for recipes, I can use keywords, ingredients, or dietary preferences.
 // Then I receive relevant search results based on my input.
-    // Api function that connects user input (.value) with the search or form element. 
+// Api function that connects user input (.value) with the search or form element. 
 
 
 // When filtering recipes, I can select options like cooking time, difficulty, and dietary restrictions.
@@ -17,48 +17,47 @@
 // Then I have all the necessary information to prepare the recipe accurately.
 
 
-var apiKey = "a4bf9990bcf9632efd2074e14211ea95"
-var liveCardEl = document.querySelector('#live-card')
-
-function getApi() {
-   var city = document.getElementById('search-bar').value;
+var apiKeyRecipes = '64299c780dmsh3a32fb940d8a24ep1e4c36jsn3be13eb68050'
+var apiKeyNutrients = '64299c780dmsh3a32fb940d8a24ep1e4c36jsn3be13eb68050'
+var submitEl = document.getElementById('btn')
 
 
-   fetch('https://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + apiKey
-   )
-       .then(function (response) {
+function getRecipes() {
 
-           return response.json();
-       })
+    fetch('https://tasty.p.rapidapi.com/recipes/list')
+        .then(function (response) {
 
-       .then(function (data) {
+            return response.json();
+        })
 
-           console.log(data)
+        .then(function (data) {
 
-           var lat = data.coord.lat
-           var lon = data.coord.lon
+            console.log(data)
 
-           searchApi(lat, lon)
-       })
+            //    var lat = data.coord.lat
+            //    var lon = data.coord.lon
+
+            //    searchApi(lat, lon)
+        })
 };
 
 function searchApi(lat, lon) {
 
-   fetch('https://api.openweathermap.org/data/2.5/forecast?lat=' + lat + '&lon=' + lon + '&appid=' + apiKey)
+    fetch('https://edamam-food-and-grocery-database.p.rapidapi.com/api/food-database/v2/nutrients')
 
-       .then(function (response) {
+        .then(function (response) {
 
-           return response.json();
-       })
+            return response.json();
+        })
 
-       .then(function (data) {
+        .then(function (data) {
 
-           console.log(data)
-       })
+            //    console.log(data)
+        })
 };
 
 
 
-submitEl.addEventListener('click', getApi);
+// submitEl.addEventListener('click', getRecipes);
 
 
