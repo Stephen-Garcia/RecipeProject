@@ -21,7 +21,7 @@ var apiKeyRecipes = '64299c780dmsh3a32fb940d8a24ep1e4c36jsn3be13eb68050'
 var apiKeyNutrients = '64299c780dmsh3a32fb940d8a24ep1e4c36jsn3be13eb68050'
 var submitEl = document.getElementById('btn')
 
-
+d
 function getRecipes() {
 
     fetch('https://tasty.p.rapidapi.com/recipes/list')
