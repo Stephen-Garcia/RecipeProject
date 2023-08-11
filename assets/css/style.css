@@ -1,11 +1,16 @@
+.bg-image { 
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-position: center;
+} 
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Lato', sans-serif;
     margin: 0;
     padding: 0;
 }
 
 header {
-    background-color: #007BFF;
     color: white;
     padding: 20px;
     text-align: center;
@@ -29,14 +34,14 @@ h1 {
     border-radius: 5px 0 0 5px;
 }
 
-button {
+/* button {
     padding: 10px;
     background-color: #333;
     color: white;
     border: none;
     border-radius: 0 5px 5px 0;
     cursor: pointer;
-}
+} */
 
 main {
     padding: 20px;
