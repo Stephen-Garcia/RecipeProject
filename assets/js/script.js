@@ -17,49 +17,49 @@
 // Then I have all the necessary information to prepare the recipe accurately.
 
 
-// var apiKey = "a4bf9990bcf9632efd2074e14211ea95"
-// var liveCardEl = document.querySelector('#live-card')
+var apiKeyRecipes = '64299c780dmsh3a32fb940d8a24ep1e4c36jsn3be13eb68050'
+var apiKeyNutrients = '64299c780dmsh3a32fb940d8a24ep1e4c36jsn3be13eb68050'
+var submitEl = document.getElementById('btn')
 
-// function getApi() {
-//    var city = document.getElementById('search-bar').value;
+d
+function getRecipes() {
 
+    fetch('https://tasty.p.rapidapi.com/recipes/list')
+        .then(function (response) {
 
-//    fetch('https://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + apiKey
-//    )
-//        .then(function (response) {
+            return response.json();
+        })
 
-//            return response.json();
-//        })
+        .then(function (data) {
 
-//        .then(function (data) {
+            console.log(data)
 
-//            console.log(data)
+            //    var lat = data.coord.lat
+            //    var lon = data.coord.lon
 
-//            var lat = data.coord.lat
-//            var lon = data.coord.lon
+            //    searchApi(lat, lon)
+        })
+};
 
-//            searchApi(lat, lon)
-//        })
-// };
+function searchApi(lat, lon) {
 
-// function searchApi(lat, lon) {
+    fetch('https://edamam-food-and-grocery-database.p.rapidapi.com/api/food-database/v2/nutrients')
 
-//    fetch('https://api.openweathermap.org/data/2.5/forecast?lat=' + lat + '&lon=' + lon + '&appid=' + apiKey)
+        .then(function (response) {
 
-//        .then(function (response) {
+            return response.json();
+        })
 
-//            return response.json();
-//        })
+        .then(function (data) {
 
-//        .then(function (data) {
-
-//            console.log(data)
-//        })
-// };
-
+            //    console.log(data)
+        })
+};
 
 
-// submitEl.addEventListener('click', getApi);
+
+// submitEl.addEventListener('click', getRecipes);
+
 
 var apiKey = "a4bf9990bcf9632efd2074e14211ea95";
 
