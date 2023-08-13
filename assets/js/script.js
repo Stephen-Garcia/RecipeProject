@@ -21,47 +21,35 @@ var apiKeyRecipes = '64299c780dmsh3a32fb940d8a24ep1e4c36jsn3be13eb68050'
 var apiKeyNutrients = '64299c780dmsh3a32fb940d8a24ep1e4c36jsn3be13eb68050'
 var submitEl = document.getElementById('btn')
 
-d
-function getRecipes() {
+function getRecipes(query, dietaryPreference) {
+  const url = `https://tasty.p.rapidapi.com/recipes/list?from=0&size=3&tags=under_30_minutes&q=${query}&diet=${dietaryPreference}`;
+  const options = {
+    method: 'GET',
+    headers: {
+      'X-RapidAPI-Key': '64299c780dmsh3a32fb940d8a24ep1e4c36jsn3be13eb68050',
+      'X-RapidAPI-Host': 'tasty.p.rapidapi.com',
+    },
+  };
 
-    const url = 'https://tasty.p.rapidapi.com/recipes/list?from=0&size=3&tags=under_30_minutes&q=french-toast';
-    const options = {
-        method: 'GET',
-        headers: {
-            'X-RapidAPI-Key': '64299c780dmsh3a32fb940d8a24ep1e4c36jsn3be13eb68050',
-            'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
-        }
-    };
+  fetch(url, options)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      const recipeResults = document.getElementById('recipe-results');
+      recipeResults.innerHTML = '';
 
+      data.results.forEach(function (recipe) {
+        const recipeCard = createRecipeCard(recipe);
+        recipeResults.appendChild(recipeCard);
+      });
+    });
+}
 
-    fetch(url, options)
-        .then(function (response) {
-            console.log(response)
-            return response.json();
-        })
-        .then(function (data) {
-            console.log(data);
-        //     var nutrientsArr = data.results
-        //     console.log(nutrientsArr)
-
-
-        //     for (let index = 0; index < nutrientsArr.length; index++) {
-        //         const element = nutrientsArr[index];
-        //         var nutritionEl = nutrientsArr[index].nutrition;
-
-
-        //         console.log(nutritionEl);
-        //     }
-        })
-};
-getRecipes();
-
-
-
-
-function searchApi (nutritionEl) {
-
-const url = 'https://edamam-food-and-grocery-database.p.rapidapi.com/api/food-database/v2/' + nutritionEl
+function searchApi(nutritionEl) {
+  const url =
+    'https://edamam-food-and-grocery-database.p.rapidapi.com/api/food-database/v2/' +
+    nutritionEl;
 const options = {
     method: 'GET',
     headers: {
@@ -80,6 +68,42 @@ fetch(url, options)
         console.log(data);
     })
 };
+
+function createRecipeCard(recipe) {
+  const card = document.createElement('div');
+  card.classList.add('card', 'mb-3', 'recipe-card');
+
+  const cardBody = document.createElement('div');
+  cardBody.classList.add('card-body', 'p-2');
+
+  const title = document.createElement('h6');
+  title.classList.add('card-title', 'mb-2');
+  title.textContent = recipe.name;
+
+  const image = document.createElement('img');
+  image.classList.add('card-img-top', 'img-fluid', 'recipe-image'); //img-fluid applies max width to 100%
+
+  image.style.maxHeight = '250px';
+
+  image.src = recipe.thumbnail_url;
+  image.alt = recipe.name;
+
+  cardBody.appendChild(title);
+  cardBody.appendChild(image);
+
+  card.appendChild(cardBody);
+
+  return card;
+}
+
+// Add an event listener for the search button
+document.getElementById('search-button').addEventListener('click', function () {
+  const query = document.getElementById('recipe-query').value;
+  const dietaryPreference = document.getElementById('dietary-preference').value;
+
+  getRecipes(query, dietaryPreference);
+});
+
 
 // submitEl.addEventListener('click', getRecipes);
 
