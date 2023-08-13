@@ -1,61 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.css"
-      rel="stylesheet"
-    />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lato:wght@100&display=swap"
-      rel="stylesheet"
-    />
-
-    <link rel="stylesheet" href="./assets/css/style.css" />
-    <title>Recipe Finder</title>
-  </head>
-
-  <body>
-    <div
-      class="bg-image"
-      style="background-image: url('./assets/images/food.jpg'); height: 100vh"
-    >
-      <header class="header text-white text-center p-2">
-        <h1>Recipe Finder</h1>
-      </header>
-      <main class="container-fluid">
-        <div class="row">
-          <div class="col-12 col-md-3 p-2 search-column">
-            <form class="p-2" id="city-search-form">
-              <h4 class="text-white">Search for a Recipe</h4>
-              <input id="city" type="text" autofocus="true" class="form-input"/>
-              <button class="btn btn-warning" type="submit">Search</button>
-            </form>
-            <div class="past-search border" id="past-search-buttons"></div>
-          </div>
-          <div class="col-12 col-md-9">
-            <div class="row selected-city" id="current-forecast">
-              <div class="col-12">
-                <h2 id="searched-city"></h2>
-                <div id="current-weather-container" class="list-group"></div>
-              </div>
-            </div>
-            <!-- <div class = "row border" id = "five-day-forecast">
-                      <h2 class= "col-12" id = "forecast"></h2>
-                      <div class = "d-flex" id = "fiveday-container"></div>
-                    </div>   -->
-          </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.css"
+    rel="stylesheet"
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lato:wght@100&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="./assets/css/style.css" />
+  <title>Recipe Finder</title>
+</head>
+<body>
+  <div
+    class="bg-image"
+    style="background-image: url('./assets/images/food.jpg'); height: 100vh"
+  >
+    <header class="header text-white text-center p-2">
+      <h1>Recipe Finder</h1>
+    </header>
+    <main class="container-fluid">
+      <div class="row">
+        <div class="col-12 col-md-3 p-2 search-column">
+          <form class="p-2" id="recipe-search-form">
+            <h4 class="text-white">Search for a Recipe</h4>
+            <input id="recipe-query" type="text" autofocus="true" class="form-input" />
+            <select id="dietary-preference" class="form-input">
+              <option value="">Select Dietary Preference</option>
+              <option value="vegetarian">Vegetarian</option>
+              <option value="vegan">Vegan</option>
+              <option value="gluten-free">Gluten-free</option>
+            </select>
+            <button class="btn btn-warning" id="search-button" type="button">
+              Search
+            </button>
+          </form>
+          <div class="past-search border" id="past-search-buttons"></div>
         </div>
-      </main>
-      <script src="./assets/js/script.js"></script>
-      <script
-        type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.js"
-      ></script>
-    </div>
-  </body>
+        <div class="col-12 col-md-9">
+          <div class="row" id="recipe-results"></div>
+        </div>
+      </div>
+    </main>
+    <script src="./assets/js/script.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.js"
+    ></script>
+  </div>
+</body>
 </html>
