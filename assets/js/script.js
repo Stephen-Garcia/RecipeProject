@@ -17,8 +17,6 @@
 // Then I have all the necessary information to prepare the recipe accurately.
 
 
-var apiKeyRecipes = '64299c780dmsh3a32fb940d8a24ep1e4c36jsn3be13eb68050'
-var apiKeyNutrients = '64299c780dmsh3a32fb940d8a24ep1e4c36jsn3be13eb68050'
 var submitEl = document.getElementById('btn')
 
 function getRecipes(query, dietaryPreference) {
@@ -36,6 +34,7 @@ function getRecipes(query, dietaryPreference) {
       return response.json();
     })
     .then(function (data) {
+        console.log(data)
       const recipeResults = document.getElementById('recipe-results');
       recipeResults.innerHTML = '';
 
@@ -44,19 +43,18 @@ function getRecipes(query, dietaryPreference) {
         recipeResults.appendChild(recipeCard);
       });
     });
+    
 }
 
-function searchApi(nutritionEl) {
-  const url =
-    'https://edamam-food-and-grocery-database.p.rapidapi.com/api/food-database/v2/' +
-    nutritionEl;
+
+function nutrition() {
+const url = 'https://dietagram.p.rapidapi.com/apiFood.php?name=Jab%C5%82ko&lang=pl&q=${query}';
 const options = {
-    method: 'GET',
-    headers: {
-        'content-type': 'application/json',
-        'X-RapidAPI-Key': '64299c780dmsh3a32fb940d8a24ep1e4c36jsn3be13eb68050',
-        'X-RapidAPI-Host': 'edamam-food-and-grocery-database.p.rapidapi.com'
-    }
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Key': '64299c780dmsh3a32fb940d8a24ep1e4c36jsn3be13eb68050',
+		'X-RapidAPI-Host': 'dietagram.p.rapidapi.com'
+	}
 };
 
 fetch(url, options)
@@ -69,12 +67,15 @@ fetch(url, options)
     })
 };
 
+
+
 function createRecipeCard(recipe) {
   const card = document.createElement('div');
   card.classList.add('card', 'mb-3', 'recipe-card');
 
   const cardBody = document.createElement('div');
   cardBody.classList.add('card-body', 'p-2');
+  cardBody.textContent = recipe.instructions
 
   const title = document.createElement('h6');
   title.classList.add('card-title', 'mb-2');
@@ -90,6 +91,7 @@ function createRecipeCard(recipe) {
 
   cardBody.appendChild(title);
   cardBody.appendChild(image);
+  
 
   card.appendChild(cardBody);
 
@@ -103,6 +105,19 @@ document.getElementById('search-button').addEventListener('click', function () {
 
   getRecipes(query, dietaryPreference);
 });
+
+
+
+var searchNutritionEl = document.getElementById('search-nutrition-input')
+var searchNutritionButton = document.getElementById('search-nutrition-button')
+
+searchNutritionButton.addEventListener('click', function () {
+    const query = document.getElementById('recipe-query').value;
+    const dietaryPreference = document.getElementById('dietary-preference').value;
+  
+    getRecipes(query, dietaryPreference);
+  });
+
 
 
 // submitEl.addEventListener('click', getRecipes);

@@ -50,3 +50,11 @@ main {
 .recipe-image {
     width: 15%;
   }
+
+  .search-nutrition {
+    padding: 20px;
+  }
+
+  #search-nutrition-text {
+    color: white;
+  }
