@@ -75,7 +75,13 @@ function createRecipeCard(recipe) {
 
   const cardBody = document.createElement('div');
   cardBody.classList.add('card-body', 'p-2');
-  cardBody.textContent = recipe.instructions
+  const instructionList = document.createElement('ol')
+  recipe.instructions.forEach(function (instruction) {
+    const instructionListItem = document.createElement('li')
+    instructionListItem.textContent = instruction.display_text
+    instructionList.appendChild(instructionListItem);
+  });
+  
 
   const title = document.createElement('h6');
   title.classList.add('card-title', 'mb-2');
@@ -91,7 +97,7 @@ function createRecipeCard(recipe) {
 
   cardBody.appendChild(title);
   cardBody.appendChild(image);
-  
+  cardBody.appendChild(instructionList);
 
   card.appendChild(cardBody);
 
