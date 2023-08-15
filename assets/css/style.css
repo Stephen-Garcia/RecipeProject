@@ -69,3 +69,25 @@ div.scroll {
     display: flex;
     object-fit: cover;
   }
+
+  .previous-search-item {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .previous-search-item:hover {
+    background-color: #f0f0f0;
+  }
+
+  .recipe-image {
+    max-height: 250px;
+    transition: transform 0.3s;
+  }
+  
+  .recipe-image:hover {
+    transform: scale(1.1);
+  }
