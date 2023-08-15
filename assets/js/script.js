@@ -67,8 +67,6 @@ fetch(url, options)
     })
 };
 
-
-
 function createRecipeCard(recipe) {
   const card = document.createElement('div');
   card.classList.add('card', 'mb-3', 'recipe-card');
@@ -104,26 +102,24 @@ function createRecipeCard(recipe) {
   return card;
 }
 
-// Add an event listener for the search button
-document.getElementById('search-button').addEventListener('click', function () {
-  const query = document.getElementById('recipe-query').value;
-  const dietaryPreference = document.getElementById('dietary-preference').value;
-
-  getRecipes(query, dietaryPreference);
-});
-
-
-
-var searchNutritionEl = document.getElementById('search-nutrition-input')
-var searchNutritionButton = document.getElementById('search-nutrition-button')
+var searchNutritionEl = document.getElementById('search-nutrition-input');
+var searchNutritionButton = document.getElementById('search-nutrition-button');
 
 searchNutritionButton.addEventListener('click', function () {
-    const query = document.getElementById('recipe-query').value;
+    const query = searchNutritionEl.value;
     const dietaryPreference = document.getElementById('dietary-preference').value;
   
     getRecipes(query, dietaryPreference);
-  });
+});
 
+document.getElementById('recipe-search-form').addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const query = searchNutritionEl.value;
+    const dietaryPreference = document.getElementById('dietary-preference').value;
+
+    getRecipes(query, dietaryPreference);
+});
 
 
 // submitEl.addEventListener('click', getRecipes);
