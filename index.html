@@ -26,7 +26,7 @@
     </header>
     <main class="container-fluid">
       <div class="row">
-        <div class="col-12 col-md-3 p-2 search-column">
+        <div class="col-12 col-md-3 p-2 search-column nutrition-text">
           <form class="p-2" id="recipe-search-form">
             <h4 class="text-white">Search for a Recipe</h4>
             <input id="recipe-query" type="text" autofocus="true" class="form-input" />
@@ -36,22 +36,20 @@
               <option value="vegan">Vegan</option>
               <option value="gluten-free">Gluten-free</option>
             </select>
-            <button class="btn btn-warning" id="search-button" type="button">
-              Search
-            </button>
+            <button class="btn btn-warning" id="search-button" type="button">Search</button>
           </form>
-          <div class="past-search border" id="past-search-buttons"></div>
+          <div class="search-nutrition">
+          <h4 id="search-nutrition-text">Search Nutrition:</h4>
+            <input id="search-nutrition-input"></input>
+            <button class="btn btn-warning" type="button" id="search-nutrition-button">Search</button>
+          </div>
+          <div class="past-search border" id="nutrition-results"></div>
         </div>
         <div class="col-12 col-md-9">
-          <div class="row" id="recipe-results"></div>
+          <div class="row d-flex flex-row scroll" id="recipe-results"></div>
         </div>
       </div>
     </main>
-    <div class="search-nutrition">
-    <h4 id="search-nutrition-text">Search Nutrition:</h4>
-      <input id="search-nutrition-input"></input>
-      <button id="search-nutrition-button">Search</button>
-    </div>
     <script src="./assets/js/script.js"></script>
     <script
       type="text/javascript"
