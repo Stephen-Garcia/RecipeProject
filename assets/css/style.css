@@ -34,27 +34,38 @@ h1 {
     border-radius: 5px 0 0 5px;
 }
 
-/* button {
+button {
     padding: 10px;
     background-color: #333;
     color: white;
     border: none;
     border-radius: 0 5px 5px 0;
     cursor: pointer;
-} */
+}
 
 main {
     padding: 20px;
 }
 
-.recipe-image {
-    width: 15%;
+div.scroll {
+    width: 1200px;
+    height: 700px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    text-align: center;
+    padding: 10px;
   }
 
-  .search-nutrition {
-    padding: 20px;
-  }
-
-  #search-nutrition-text {
+  .nutrition-text {
+    font-family: 'Lato', sans-serif;
+    margin: 0;
+    padding: 0;
     color: white;
+  } 
+
+  .recipe-image {
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    object-fit: cover;
   }
