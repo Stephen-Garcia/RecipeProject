@@ -47,16 +47,16 @@ function getRecipes(query, dietaryPreference) {
 }
 
 
-function nutrition() {
-const url = 'https://dietagram.p.rapidapi.com/apiFood.php?name=Jab%C5%82ko&lang=pl&q=${query}';
-const options = {
-	method: 'GET',
-	headers: {
-		'X-RapidAPI-Key': '64299c780dmsh3a32fb940d8a24ep1e4c36jsn3be13eb68050',
-		'X-RapidAPI-Host': 'dietagram.p.rapidapi.com'
-	}
-};
-
+function nutrition(nutritionalQuery) {
+  const url = `https://nutrition-by-api-ninjas.p.rapidapi.com/v1/nutrition?query=${nutritionalQuery}`;
+  const options = {
+    method: 'GET',
+    headers: {
+      'X-RapidAPI-Key': '64299c780dmsh3a32fb940d8a24ep1e4c36jsn3be13eb68050',
+      'X-RapidAPI-Host': 'nutrition-by-api-ninjas.p.rapidapi.com'
+    }
+  };
+  
 fetch(url, options)
     .then(function (response) {
         console.log(response)
@@ -102,14 +102,22 @@ function createRecipeCard(recipe) {
   return card;
 }
 
-var searchNutritionEl = document.getElementById('search-nutrition-input');
-var searchNutritionButton = document.getElementById('search-nutrition-button');
+
 
 document.getElementById('search-button').addEventListener('click', function () {
   const query = document.getElementById('recipe-query').value;
   const dietaryPreference = document.getElementById('dietary-preference').value;
 
   getRecipes(query, dietaryPreference);
+});
+
+// var searchNutritionEl = document.getElementById('search-nutrition-input');
+// var searchNutritionButton = document.getElementById('search-nutrition-button');
+
+document.getElementById('search-nutrition-button').addEventListener('click', function () {
+  const nutritionalQuery = document.getElementById('nutritional-query').value;
+
+  nutrition(nutritionalQuery);
 });
 
 // document.getElementById('recipe-search-form').addEventListener('submit', function (event) {
