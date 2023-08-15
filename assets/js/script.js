@@ -67,8 +67,6 @@ fetch(url, options)
     })
 };
 
-
-
 function createRecipeCard(recipe) {
   const card = document.createElement('div');
   card.classList.add('card', 'mb-3', 'recipe-card');
@@ -122,6 +120,7 @@ document.getElementById('recipe-search-form').addEventListener('submit', functio
 
     getRecipes(query, dietaryPreference);
 });
+
 
 // submitEl.addEventListener('click', getRecipes);
 
