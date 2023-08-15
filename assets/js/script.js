@@ -105,21 +105,21 @@ function createRecipeCard(recipe) {
 var searchNutritionEl = document.getElementById('search-nutrition-input');
 var searchNutritionButton = document.getElementById('search-nutrition-button');
 
-searchNutritionButton.addEventListener('click', function () {
-    const query = searchNutritionEl.value;
-    const dietaryPreference = document.getElementById('dietary-preference').value;
-  
-    getRecipes(query, dietaryPreference);
+document.getElementById('search-button').addEventListener('click', function () {
+  const query = document.getElementById('recipe-query').value;
+  const dietaryPreference = document.getElementById('dietary-preference').value;
+
+  getRecipes(query, dietaryPreference);
 });
 
-document.getElementById('recipe-search-form').addEventListener('submit', function (event) {
-    event.preventDefault();
+// document.getElementById('recipe-search-form').addEventListener('submit', function (event) {
+//     event.preventDefault();
 
-    const query = searchNutritionEl.value;
-    const dietaryPreference = document.getElementById('dietary-preference').value;
+//     const query = searchNutritionEl.value;
+//     const dietaryPreference = document.getElementById('dietary-preference').value;
 
-    getRecipes(query, dietaryPreference);
-});
+//     getRecipes(query, dietaryPreference);
+// });
 
 
 // submitEl.addEventListener('click', getRecipes);
