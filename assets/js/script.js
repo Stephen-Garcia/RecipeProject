@@ -19,8 +19,8 @@
 
 var submitEl = document.getElementById('btn')
 
-function getRecipes(query, dietaryPreference) {
-  const url = `https://tasty.p.rapidapi.com/recipes/list?from=0&size=3&tags=under_30_minutes&q=${query}&diet=${dietaryPreference}`;
+function getRecipes(query) {
+  const url = `https://tasty.p.rapidapi.com/recipes/list?from=0&size=3&tags=under_30_minutes&q=${query}`;
   const options = {
     method: 'GET',
     headers: {
@@ -34,7 +34,6 @@ function getRecipes(query, dietaryPreference) {
       return response.json();
     })
     .then(function (data) {
-        console.log(data)
       const recipeResults = document.getElementById('recipe-results');
       recipeResults.innerHTML = '';
 
@@ -43,20 +42,18 @@ function getRecipes(query, dietaryPreference) {
         recipeResults.appendChild(recipeCard);
       });
     });
-    
 }
 
+function nutrition() {
+const url = 'https://dietagram.p.rapidapi.com/apiFood.php?name=Jab%C5%82ko&lang=pl&q=${query}';
+const options = {
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Key': '64299c780dmsh3a32fb940d8a24ep1e4c36jsn3be13eb68050',
+		'X-RapidAPI-Host': 'dietagram.p.rapidapi.com'
+	}
+};
 
-function nutrition(nutritionalQuery) {
-  const url = `https://nutrition-by-api-ninjas.p.rapidapi.com/v1/nutrition?query=${nutritionalQuery}`;
-  const options = {
-    method: 'GET',
-    headers: {
-      'X-RapidAPI-Key': '64299c780dmsh3a32fb940d8a24ep1e4c36jsn3be13eb68050',
-      'X-RapidAPI-Host': 'nutrition-by-api-ninjas.p.rapidapi.com'
-    }
-  };
-  
 fetch(url, options)
     .then(function (response) {
         console.log(response)
@@ -67,6 +64,7 @@ fetch(url, options)
     })
 };
 
+// creates a card that displays data pulled from the APIs
 function createRecipeCard(recipe) {
   const card = document.createElement('div');
   card.classList.add('card', 'mb-3', 'recipe-card');
@@ -102,23 +100,77 @@ function createRecipeCard(recipe) {
   return card;
 }
 
+var searchNutritionEl = document.getElementById('search-nutrition-input');
+var searchNutritionButton = document.getElementById('search-nutrition-button');
+
+document.getElementById('search-button').addEventListener('click', function () {
+  const query = document.getElementById('recipe-query').value;
+  getRecipes(query);
+});
+
+document.getElementById('recipe-query').addEventListener('keydown', function (event) {
+  if (event.key === 'Enter') {
+    event.preventDefault();
+    const query = document.getElementById('recipe-query').value;
+    getRecipes(query);
+  }
+});
+
+// saves search queries to local storage
+function saveSearch(query) {
+  const searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
+
+  const searchItem = {
+    query: query,
+    timestamp: new Date().toLocaleString()
+  };
+
+  searchHistory.push(searchItem);
+  localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+}
+
+// this function retrieves and displays data from previous searches that were stored in local storage.
+function displayPreviousSearches() {
+  const searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
+  const nutritionResults = document.getElementById('nutrition-results');
+
+  nutritionResults.innerHTML = '';
+
+  // this shows the 5 most recent searches.
+  const recentSearches = searchHistory.slice(-5).reverse();
+
+  recentSearches.forEach(function (searchItem) {
+    const searchItemDiv = document.createElement('div');
+    searchItemDiv.classList.add('previous-search-item');
+
+    const query = document.createElement('p');
+    query.textContent = searchItem.query;
+
+    query.addEventListener('click', function () {
+      const savedQuery = searchItem.query;
+      
+      document.getElementById('recipe-query').value = savedQuery;
+      getRecipes(savedQuery);
+    });
+
+    searchItemDiv.appendChild(query);
+
+    nutritionResults.appendChild(searchItemDiv);
+  });
+}
 
 
 document.getElementById('search-button').addEventListener('click', function () {
   const query = document.getElementById('recipe-query').value;
-  const dietaryPreference = document.getElementById('dietary-preference').value;
-
-  getRecipes(query, dietaryPreference);
+  getRecipes(query);
+  saveSearch(query);
 });
 
-// var searchNutritionEl = document.getElementById('search-nutrition-input');
-// var searchNutritionButton = document.getElementById('search-nutrition-button');
-
-document.getElementById('search-nutrition-button').addEventListener('click', function () {
-  const nutritionalQuery = document.getElementById('nutritional-query').value;
-
-  nutrition(nutritionalQuery);
+document.getElementById('show-previous-searches').addEventListener('click', function (event) {
+  event.preventDefault();
+  displayPreviousSearches();
 });
+
 
 // document.getElementById('recipe-search-form').addEventListener('submit', function (event) {
 //     event.preventDefault();
