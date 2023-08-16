@@ -91,3 +91,7 @@ div.scroll {
   .recipe-image:hover {
     transform: scale(1.1);
   }
+
+  .card-body {
+    color: black;
+  }

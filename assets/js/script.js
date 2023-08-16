@@ -44,25 +44,40 @@ function getRecipes(query) {
     });
 }
 
-function nutrition() {
-const url = 'https://dietagram.p.rapidapi.com/apiFood.php?name=Jab%C5%82ko&lang=pl&q=${query}';
-const options = {
-	method: 'GET',
-	headers: {
-		'X-RapidAPI-Key': '64299c780dmsh3a32fb940d8a24ep1e4c36jsn3be13eb68050',
-		'X-RapidAPI-Host': 'dietagram.p.rapidapi.com'
-	}
-};
-
+function nutrition(nutritionalQuery) {
+  const url = `https://nutrition-by-api-ninjas.p.rapidapi.com/v1/nutrition?query=${nutritionalQuery}`;
+  const options = {
+    method: 'GET',
+    headers: {
+      'X-RapidAPI-Key': '64299c780dmsh3a32fb940d8a24ep1e4c36jsn3be13eb68050',
+      'X-RapidAPI-Host': 'nutrition-by-api-ninjas.p.rapidapi.com'
+    }
+  };
+  
 fetch(url, options)
     .then(function (response) {
         console.log(response)
         return response.json();
     })
     .then(function (data) {
-        console.log(data);
-    })
-};
+        console.log(data);// ali working here
+
+        const nutritionResults = document.getElementById('nutrition-results');
+        nutritionResults.innerHTML = '';
+        
+        var calories = data[0].calories
+        var protein = data[0].protein_g
+        var carbohydrates = data[0].carbohydrates_total_g
+        var fats = data[0].fat_total_g
+    
+        const nutritionalCard = createNutritionalCard(calories, protein, carbohydrates, fats);
+        nutritionResults.appendChild(nutritionalCard);
+        
+        console.log(calories, protein, carbohydrates, fats)
+          
+    });
+  }
+  
 
 // creates a card that displays data pulled from the APIs
 function createRecipeCard(recipe) {
@@ -98,6 +113,21 @@ function createRecipeCard(recipe) {
   card.appendChild(cardBody);
 
   return card;
+}
+
+// nutrition card to display nutrition facts
+function createNutritionalCard(calories, protein, carbohydrates, fats) {
+  const nutritionalCard = document.createElement('div');
+  nutritionalCard.classList.add('card', 'nutritional-card', 'p-5');
+  
+  const nutritionBody = document.createElement('div')
+  nutritionBody.classList.add('card-body', 'nutrition-body', 'mb-auto')
+  nutritionBody.textContent = calories + 'calories' + '-' + protein + 'g of protein' + '-' + carbohydrates + 'g of carbs' + '-' + fats + 'g of fat';
+
+  nutritionalCard.appendChild(nutritionBody);
+
+  return nutritionalCard;
+
 }
 
 var searchNutritionEl = document.getElementById('search-nutrition-input');
@@ -166,11 +196,17 @@ document.getElementById('search-button').addEventListener('click', function () {
   saveSearch(query);
 });
 
+// Search button to display nutrition card
+document.getElementById('search-nutrition-button').addEventListener('click', function () {
+  const nutritionalQuery = document.getElementById('nutritional-query').value;
+
+  nutrition(nutritionalQuery);
+});
+
 document.getElementById('show-previous-searches').addEventListener('click', function (event) {
   event.preventDefault();
   displayPreviousSearches();
 });
-
 
 // document.getElementById('recipe-search-form').addEventListener('submit', function (event) {
 //     event.preventDefault();
@@ -256,5 +292,3 @@ document.getElementById('show-previous-searches').addEventListener('click', func
 // }
 
 // searchFormEl.addEventListener('submit', handleSearchFormSubmit);
-
-
