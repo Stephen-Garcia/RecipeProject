@@ -20,14 +20,20 @@ When viewing a recipe, I can see the list of ingredients, step-by-step instructi
 Then I have all the necessary information to prepare the recipe accurately.
 
 When I click on "Show Previous Searches".
-Then a list of the five latest seaches will populate.
+Then a list of the five latest searches will populate.
 ```
 
-![pic 1](<one-click-eats pic 1.jpeg>)<br>
+## APIs Used
+```
+tasty.p.rapidapi.com
+dietagram.p.rapidapi.com
+```
 
-![pic 2](<one-click-eats pic 2.jpeg>)<br>
+![Alt text](one-click-eats-1.jpeg)
 
-![pic 3](<one-click-eats pic 3.jpeg>)<br>
+![Alt text](one-click-eats-2.jpeg)
+
+![Alt text](one-click-eats-3.jpeg)
 
 ## Link to the Website
 
