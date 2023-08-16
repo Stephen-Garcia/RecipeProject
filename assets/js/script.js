@@ -44,16 +44,16 @@ function getRecipes(query) {
     });
 }
 
-function nutrition() {
-const url = 'https://dietagram.p.rapidapi.com/apiFood.php?name=Jab%C5%82ko&lang=pl&q=${query}';
-const options = {
-	method: 'GET',
-	headers: {
-		'X-RapidAPI-Key': '64299c780dmsh3a32fb940d8a24ep1e4c36jsn3be13eb68050',
-		'X-RapidAPI-Host': 'dietagram.p.rapidapi.com'
-	}
-};
-
+function nutrition(nutritionalQuery) {
+  const url = `https://nutrition-by-api-ninjas.p.rapidapi.com/v1/nutrition?query=${nutritionalQuery}`;
+  const options = {
+    method: 'GET',
+    headers: {
+      'X-RapidAPI-Key': '64299c780dmsh3a32fb940d8a24ep1e4c36jsn3be13eb68050',
+      'X-RapidAPI-Host': 'nutrition-by-api-ninjas.p.rapidapi.com'
+    }
+  };
+  
 fetch(url, options)
     .then(function (response) {
         console.log(response)
@@ -63,6 +63,7 @@ fetch(url, options)
         console.log(data);
     })
 };
+
 
 // creates a card that displays data pulled from the APIs
 function createRecipeCard(recipe) {
@@ -98,6 +99,20 @@ function createRecipeCard(recipe) {
   card.appendChild(cardBody);
 
   return card;
+}
+
+
+function createNutritionalCard(nutrition) {
+  const nutritionalCard = document.createElement('div');
+  nutritionalCard.classList.add('card', 'nutritional-card', 'p-1');
+  
+  const nutritionBody = document.createElement('div')
+  nutritionBody.classList.add('nutrition-body', 'mb-auto' )
+  nutritionBody.textContent = data.calories
+  nutritionalCard.appendChild(nutritionBody);
+
+  return nutritionalCard;
+
 }
 
 var searchNutritionEl = document.getElementById('search-nutrition-input');
@@ -164,6 +179,13 @@ document.getElementById('search-button').addEventListener('click', function () {
   const query = document.getElementById('recipe-query').value;
   getRecipes(query);
   saveSearch(query);
+});
+
+
+document.getElementById('search-nutrition-button').addEventListener('click', function () {
+  const nutritionalQuery = document.getElementById('nutritional-query').value;
+
+  nutrition(nutritionalQuery);
 });
 
 document.getElementById('show-previous-searches').addEventListener('click', function (event) {
