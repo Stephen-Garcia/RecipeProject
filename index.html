@@ -1,55 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link
-    href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.css"
-    rel="stylesheet"
-  />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Lato:wght@100&display=swap"
-    rel="stylesheet"
-  />
-  <link rel="stylesheet" href="./assets/css/style.css" />
-  <title>Recipe Finder</title>
-</head>
-<body>
-  <div
-    class="bg-image"
-    style="background-image: url('./assets/images/food.jpg'); height: 100vh"
-  >
-    <header class="header text-white text-center p-2">
-      <h1>Recipe Finder</h1>
-    </header>
-    <main class="container-fluid">
-      <div class="row">
-        <div class="col-12 col-md-3 p-2 search-column nutrition-text">
-          <form class="p-2" id="recipe-search-form">
-            <h4 class="text-white">Search for a Recipe</h4>
-            <input id="recipe-query" type="text" autofocus="true" class="form-input" />
-            <button class="btn btn-warning" id="search-button" type="button">Search</button>
-            <button class="btn btn-secondary mt-3" id="show-previous-searches">Show Previous Searches</button>
-          </form>
-          <div class="search-nutrition">
-          <h4 id="search-nutrition-text">Search Nutrition:</h4>
-            <input id="nutritional-query" type="text" autofocus="true" class="form-input">
-            <button class="btn btn-warning" type="button" id="search-nutrition-button">Search</button>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.css"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <title>Recipe Finder</title>
+  </head>
+  <body>
+    <div
+      class="bg-image"
+      style="background-image: url('./assets/images/food.jpg'); height: 100vh"
+    >
+      <header class="header text-white text-center p-2">
+        <h1>One Click Eats</h1>
+      </header>
+      <main class="container-fluid">
+        <div class="row">
+          <div class="col-12 col-md-3 p-2 search-column nutrition-text">
+            <form class="p-2" id="recipe-search-form">
+              <h4 class="text-white">Search for a Recipe</h4>
+              <input
+                id="recipe-query"
+                type="text"
+                autofocus="true"
+                class="form-input"
+              />
+              <button class="btn btn-warning" id="search-button" type="button">
+                Search
+              </button>
+              <button
+                class="btn btn-secondary mt-3"
+                id="show-previous-searches"
+              >
+                Show Previous Searches
+              </button>
+            </form>
+            <div class="search-nutrition">
+              <h4 id="search-nutrition-text">Search Nutrition:</h4>
+              <input
+                id="nutritional-query"
+                type="text"
+                autofocus="true"
+                class="form-input"
+              />
+              <button
+                class="btn btn-warning"
+                type="button"
+                id="search-nutrition-button"
+              >
+                Search
+              </button>
+            </div>
+            <div class="past-search border" id="nutrition-results"></div>
           </div>
-          <div class="past-search border" id="nutrition-results"></div>
+          <div class="col-12 col-md-9">
+            <div class="row d-flex flex-row scroll" id="recipe-results"></div>
+          </div>
         </div>
-        <div class="col-12 col-md-9">
-          <div class="row d-flex flex-row scroll" id="recipe-results"></div>
-        </div>
-      </div>
-    </main>
-    <script src="./assets/js/script.js"></script>
-    <script
-      type="text/javascript"
-      src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.js"
-    ></script>
-  </div>
-</body>
+      </main>
+      <script src="./assets/js/script.js"></script>
+      <script
+        type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.js"
+      ></script>
+    </div>
+  </body>
 </html>
