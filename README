@@ -1,0 +1,34 @@
+# One-Click-Eats
+A browser-based recipe finder 
+
+## User Story
+
+```
+As someone who likes to cook with a focus on healthy and nutritious meals, we're eager to utilize this app to discover and prepare quick and easy recipes.
+```
+
+## Acceptance Criteria
+
+```
+When searching for recipes, I can search for a named food item.
+Then I receive relevant search results based on my input.
+
+When searching for nutrition results.
+Then a card will populate that shows nutrition information.
+
+When viewing a recipe, I can see the list of ingredients, step-by-step instructions, cooking time, serving size, and nutrition details.
+Then I have all the necessary information to prepare the recipe accurately.
+
+When I click on "Show Previous Searches".
+Then a list of the five latest seaches will populate.
+```
+
+![pic 1](<one-click-eats pic 1.jpeg>)<br>
+
+![pic 2](<one-click-eats pic 2.jpeg>)<br>
+
+![pic 3](<one-click-eats pic 3.jpeg>)<br>
+
+## Link to the Website
+
+https://stephen-garcia.github.io/RecipeProject/
