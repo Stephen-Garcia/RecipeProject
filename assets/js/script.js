@@ -99,17 +99,38 @@ function createRecipeCard(recipe) {
 // nutrition card to display nutrition facts
 function createNutritionalCard(calories, protein, carbohydrates, fats) {
   const nutritionalCard = document.createElement('div');
-  nutritionalCard.classList.add('card', 'nutritional-card', 'p-5');
+  nutritionalCard.classList.add('card', 'nutritional-card', 'p-2', 'd-inline-flex', 'flex-column', 'justify-content-center');
   
   const nutritionBody = document.createElement('div')
-  nutritionBody.classList.add('card-body', 'nutrition-body', 'mb-auto')
-  nutritionBody.textContent = calories + 'calories' + '-' + protein + 'g of protein' + '-' + carbohydrates + 'g of carbs' + '-' + fats + 'g of fat';
+  nutritionBody.classList.add('card-body', 'nutrition-body');
 
+  // Create an array of strings for the nutrition list
+  const nutritionList = [
+    calories + ' Calories',
+    protein + 'g of protein',
+    carbohydrates + 'g of carbs',
+    fats + 'g of fat'
+  ];
+
+  // Create an unordered (bulleted) list element
+  const nutritionListElement = document.createElement('ul');
+  
+  // Populate the list with nutrition data as list items
+  nutritionList.forEach(function(itemText) {
+    const listItem = document.createElement('li');
+    listItem.textContent = itemText;
+    nutritionListElement.appendChild(listItem);
+  });
+
+  // Append the list element to the nutrition body
+  nutritionBody.appendChild(nutritionListElement);
+
+  // Append the nutrition body to the nutritional card
   nutritionalCard.appendChild(nutritionBody);
 
   return nutritionalCard;
-
 }
+
 
 var searchNutritionEl = document.getElementById('search-nutrition-input');
 var searchNutritionButton = document.getElementById('search-nutrition-button');
