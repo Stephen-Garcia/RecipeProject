@@ -5,7 +5,7 @@ function getRecipes(query) {
   const options = {
     method: 'GET',
     headers: {
-      'X-RapidAPI-Key': '64299c780dmsh3a32fb940d8a24ep1e4c36jsn3be13eb68050',
+      'X-RapidAPI-Key': '',
       'X-RapidAPI-Host': 'tasty.p.rapidapi.com',
     },
   };
@@ -30,7 +30,7 @@ function nutrition(nutritionalQuery) {
   const options = {
     method: 'GET',
     headers: {
-      'X-RapidAPI-Key': '64299c780dmsh3a32fb940d8a24ep1e4c36jsn3be13eb68050',
+      'X-RapidAPI-Key': '',
       'X-RapidAPI-Host': 'nutrition-by-api-ninjas.p.rapidapi.com'
     }
   };
